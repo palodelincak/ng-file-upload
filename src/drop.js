@@ -162,6 +162,7 @@
       if (urls.length) {
         angular.forEach(urls, function (url) {
           promises.push(upload.urlToBlob(url).then(function (blob) {
+            blob.$ngfHtml = html;
             files.push(blob);
           }));
         });
