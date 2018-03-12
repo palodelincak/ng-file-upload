@@ -374,7 +374,7 @@ ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, 
 
   this.urlToBlob = function(url) {
     var defer = $q.defer();
-    $http({url: url, method: 'get', responseType: 'arraybuffer'}).then(function (resp) {
+    $http({url: url, method: 'get', responseType: 'arraybuffer', headers: upload.defaults.urlToBlobHeaders || {}}).then(function (resp) {
       var arrayBufferView = new Uint8Array(resp.data);
       var type = resp.headers('content-type') || 'image/WebP';
       var blob = new window.Blob([arrayBufferView], {type: type});
